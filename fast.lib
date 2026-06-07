@@ -1,0 +1,462 @@
+library(fast) {
+  delay_model : table_lookup;
+  time_unit : "1ns";
+  voltage_unit : "1V";
+  current_unit : "1mA";
+  leakage_power_unit : "1nW";
+  capacitive_load_unit (1,pf);
+  nom_process : 1;
+  nom_voltage : 1.1;
+  nom_temperature : -40.0;
+  operating_conditions(fast) {
+    process : 1;
+    voltage : 1.1;
+    temperature : -40.0;
+    tree_type : balanced_tree;
+  }
+  default_operating_conditions : fast;
+
+cell (INVX1) {
+  area : 1.064;
+  cell_leakage_power : 3.2;
+  cell_footprint : inv;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "!A";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0164"); }
+      cell_fall (scalar) { values("0.0156"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (INVX2) {
+  area : 1.33;
+  cell_leakage_power : 3.2;
+  cell_footprint : inv;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "!A";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0164"); }
+      cell_fall (scalar) { values("0.0156"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (BUFX2) {
+  area : 1.596;
+  cell_leakage_power : 3.2;
+  cell_footprint : buf;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "A";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0164"); }
+      cell_fall (scalar) { values("0.0156"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (NAND2X1) {
+  area : 1.33;
+  cell_leakage_power : 6.4;
+  cell_footprint : nand2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "!(A&B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (NOR2X1) {
+  area : 1.33;
+  cell_leakage_power : 6.4;
+  cell_footprint : nor2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "!(A+B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (AND2X1) {
+  area : 1.596;
+  cell_leakage_power : 6.4;
+  cell_footprint : and2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "(A&B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (OR2X1) {
+  area : 1.596;
+  cell_leakage_power : 6.4;
+  cell_footprint : or2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "(A+B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (XOR2X1) {
+  area : 2.128;
+  cell_leakage_power : 6.4;
+  cell_footprint : xor2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "(A^B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (XNOR2X1) {
+  area : 2.128;
+  cell_leakage_power : 6.4;
+  cell_footprint : xnor2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (ZN) {
+    direction : output;
+    function : "!(A^B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (MX2X1) {
+  area : 2.66;
+  cell_leakage_power : 9.6;
+  cell_footprint : mux2;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (S0) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (Y) {
+    direction : output;
+    function : "(A S0\')+(B S0)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0239"); }
+      cell_fall (scalar) { values("0.0227"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0239"); }
+      cell_fall (scalar) { values("0.0227"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "S0";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0239"); }
+      cell_fall (scalar) { values("0.0227"); }
+    }
+    internal_power () {
+      related_pin : "S0";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (ADDHX1) {
+  area : 3.192;
+  cell_leakage_power : 6.4;
+  cell_footprint : addh;
+  pin (A) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (B) {
+    direction : input;
+    capacitance : 0.0021;
+  }
+  pin (CO) {
+    direction : output;
+    function : "(A&B)";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+    timing () {
+      related_pin : "B";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0202"); }
+      cell_fall (scalar) { values("0.0192"); }
+    }
+    internal_power () {
+      related_pin : "B";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+cell (TIEHIX1) {
+  area : 0.798;
+  cell_leakage_power : 3.2;
+  cell_footprint : tieh;
+  pin (Y) {
+    direction : output;
+    function : "1";
+    max_capacitance : 0.4;
+    timing () {
+      related_pin : "A";
+      timing_sense : negative_unate;
+      cell_rise (scalar) { values("0.0126"); }
+      cell_fall (scalar) { values("0.012"); }
+    }
+    internal_power () {
+      related_pin : "A";
+      rise_power (scalar) { values("1.44"); }
+      fall_power (scalar) { values("1.296"); }
+    }
+  }
+}
+
+}

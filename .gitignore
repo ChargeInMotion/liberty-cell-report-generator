@@ -1,0 +1,6 @@
+# local archive — original Group-9 deliverables (.docx/.pptx) + licensed Cadence GPDK045 .lib files.
+# Kept locally, NEVER published.
+_archive/
+# generated output
+*.lib_Report*.html
+report*.html
